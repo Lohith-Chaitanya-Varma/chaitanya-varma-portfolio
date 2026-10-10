@@ -22,7 +22,7 @@ export default function About() {
           {/* Portrait Column */}
           <div className="about-portrait-card">
             <img
-              src="/images/profile.jpg"
+              src="/images/lohith_varma_portrait.jpg"
               alt="S. Lohith Chaitanya Varma Portrait"
               className="about-portrait-img"
             />
