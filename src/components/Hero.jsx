@@ -88,8 +88,8 @@ export default function Hero({ onOpenResume, onSelectProject, onToast }) {
           <div className="hero-content">
             {/* Oversized Headline */}
             <h1 className="hero-headline">
-              Architecting Intelligence. <br />
-              <span className="hero-gradient-text">Engineering with Precision.</span>
+              Software Developer <br />
+              <span className="hero-gradient-text">with Precision.</span>
             </h1>
 
             {/* Subhead / Introduction */}
