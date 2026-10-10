@@ -1,5 +1,5 @@
 import React from 'react';
-import { Download, ExternalLink, Printer, FileText, CheckCircle2, ShieldCheck, Mail, MapPin } from 'lucide-react';
+import { Download, ExternalLink, Printer, FileText, CheckCircle2, Copy, ShieldCheck, Mail, MapPin, Sparkles } from 'lucide-react';
 import { PERSONAL_INFO, PROJECTS, EDUCATION_DATA, SKILL_CATEGORIES } from '../data/portfolioData';
 
 export default function ResumeSection({ onToast }) {
@@ -12,13 +12,36 @@ export default function ResumeSection({ onToast }) {
     window.print();
   };
 
+  const handleCopyText = () => {
+    const resumeText = `S. LOHITH CHAITANYA VARMA
+Bellary, Karnataka, India | ${PERSONAL_INFO.email}
+B.E. in Artificial Intelligence and Machine Learning (Class of 2027)
+Institution: ${EDUCATION_DATA.institution}
+Current CGPA: ${EDUCATION_DATA.cgpa} / 10.0
+
+TECHNICAL SKILLS:
+- Languages: Python, JavaScript, SQL, HTML, CSS
+- Web & Frameworks: React, FastAPI, Computer Vision, Groq API
+- Core Fundamentals: Object-Oriented Programming (OOP), Data Structures & Algorithms (DSA)
+- Developer Tools: Git, GitHub, VS Code
+
+PROJECTS:
+1. Golden Ratio Face Analyzer (HTML, CSS, JavaScript, React, Computer Vision)
+   - Facial proportion analysis using golden ratio (1:1.618) measurements and visual landmark overlays.
+2. AIVA — AI Virtual Assistant (React, JavaScript, Python, FastAPI, Groq API)
+   - Aptitude testing, coding practice, and mock interview platform with low-latency LLM inference.`;
+
+    navigator.clipboard.writeText(resumeText);
+    onToast('Copied full plain-text resume to clipboard!');
+  };
+
   return (
     <section id="resume" className="section">
       <div className="container">
         {/* Section Header */}
         <div>
           <div className="section-tag">
-            <span className="section-tag-dot"></span>
+            <span className="section-tag-dot" />
             <span>CURRICULUM VITAE</span>
           </div>
           <h2 className="section-title">
@@ -86,6 +109,16 @@ export default function ResumeSection({ onToast }) {
                 <ExternalLink size={15} />
                 <span>Open in Tab</span>
               </a>
+
+              <button
+                onClick={handleCopyText}
+                className="btn btn-secondary btn-sm"
+                id="copy-resume-text-btn"
+                title="Copy Plain-Text for ATS"
+              >
+                <Copy size={15} />
+                <span>Copy Text</span>
+              </button>
 
               <button
                 onClick={handlePrint}

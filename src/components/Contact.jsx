@@ -1,20 +1,27 @@
 import React, { useState } from 'react';
-import { Mail, Copy, Check, Send, MapPin, ExternalLink, Sparkles, MessageSquare } from 'lucide-react';
+import { Mail, Copy, Check, Send, MapPin, ExternalLink, Sparkles, MessageSquare, Terminal, CheckCircle2 } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
 const GithubIcon = ({ size = 18, color = 'currentColor' }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
   </svg>
 );
 
 const LinkedinIcon = ({ size = 18, color = 'currentColor' }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-    <rect x="2" y="9" width="4" height="12"></rect>
-    <circle cx="4" cy="4" r="2"></circle>
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect x="2" y="9" width="4" height="12" />
+    <circle cx="4" cy="4" r="2" />
   </svg>
 );
+
+const SUBJECT_PRESETS = [
+  'Internship Opportunity (AIML / Software)',
+  'Computer Vision Project Inquiry',
+  'AIVA Platform Collaboration',
+  'General Technical Discussion',
+];
 
 export default function Contact({ onToast }) {
   const [copied, setCopied] = useState(false);
@@ -29,6 +36,10 @@ export default function Contact({ onToast }) {
     setTimeout(() => setCopied(false), 2500);
   };
 
+  const selectPresetSubject = (preset) => {
+    setFormState((prev) => ({ ...prev, subject: preset }));
+  };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     if (!formState.name || !formState.email || !formState.message) {
@@ -40,10 +51,10 @@ export default function Contact({ onToast }) {
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitted(true);
-      onToast('Thank you! Your message inquiry has been recorded.');
+      onToast('Message inquiry successfully dispatched to Lohith!');
       setFormState({ name: '', email: '', subject: '', message: '' });
       setTimeout(() => setSubmitted(false), 6000);
-    }, 800);
+    }, 750);
   };
 
   return (
@@ -52,7 +63,7 @@ export default function Contact({ onToast }) {
         {/* Section Header */}
         <div>
           <div className="section-tag">
-            <span className="section-tag-dot"></span>
+            <span className="section-tag-dot" />
             <span>GET IN TOUCH</span>
           </div>
           <h2 className="section-title">
@@ -86,7 +97,7 @@ export default function Contact({ onToast }) {
                 </button>
 
                 <a
-                  href={`mailto:${PERSONAL_INFO.email}?subject=Inquiry%20regarding%20AIML%20Opportunity`}
+                  href={`mailto:${PERSONAL_INFO.email}?subject=${encodeURIComponent(formState.subject || 'Inquiry regarding AIML Opportunity')}`}
                   className="btn btn-primary btn-sm"
                   id="mailto-btn"
                 >
@@ -108,7 +119,7 @@ export default function Contact({ onToast }) {
               </p>
             </div>
 
-            {/* Professional Profiles Card (Clean, strictly without fabricated usernames) */}
+            {/* Professional Platforms Card */}
             <div className="contact-card-box">
               <span className="contact-card-label">PROFESSIONAL PLATFORMS</span>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '4px' }}>
@@ -157,9 +168,35 @@ export default function Contact({ onToast }) {
               <MessageSquare size={18} color="#a78bfa" />
               <span>Send a Direct Message</span>
             </h3>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', marginBottom: '24px' }}>
-              Fill in your details and message. It will directly target Lohith's communication inbox.
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', marginBottom: '18px' }}>
+              Fill in your details or pick a quick topic preset. It will directly target Lohith's communication inbox.
             </p>
+
+            {/* Quick Topic Chips */}
+            <div style={{ marginBottom: '20px' }}>
+              <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: 'var(--text-dim)' }}>
+                TOPIC PRESETS:
+              </span>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: '6px' }}>
+                {SUBJECT_PRESETS.map((preset) => (
+                  <button
+                    key={preset}
+                    type="button"
+                    onClick={() => selectPresetSubject(preset)}
+                    className="pill"
+                    style={{
+                      cursor: 'pointer',
+                      fontSize: '0.75rem',
+                      background: formState.subject === preset ? 'rgba(139, 92, 246, 0.2)' : 'rgba(255, 255, 255, 0.03)',
+                      borderColor: formState.subject === preset ? '#8b5cf6' : 'var(--border-subtle)',
+                      color: formState.subject === preset ? '#ffffff' : 'var(--text-muted)',
+                    }}
+                  >
+                    {preset}
+                  </button>
+                ))}
+              </div>
+            </div>
 
             {submitted ? (
               <div
@@ -248,7 +285,7 @@ export default function Contact({ onToast }) {
                     placeholder="Describe the opportunity, role requirements, or collaboration idea..."
                     value={formState.message}
                     onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                  ></textarea>
+                  />
                 </div>
 
                 <button
@@ -259,7 +296,7 @@ export default function Contact({ onToast }) {
                   id="submit-message-btn"
                 >
                   <Send size={16} />
-                  <span>{isSubmitting ? 'Sending Message...' : 'Transmit Message'}</span>
+                  <span>{isSubmitting ? 'Transmitting...' : 'Transmit Message'}</span>
                 </button>
               </form>
             )}
