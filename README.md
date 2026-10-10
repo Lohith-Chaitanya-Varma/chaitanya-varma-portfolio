@@ -1,16 +1,52 @@
-# React + Vite
+# S. Lohith Chaitanya Varma — Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A bespoke, dark luxury personal portfolio website engineered with **React** and **Vanilla CSS**.
 
-Currently, two official plugins are available:
+Built for **S. Lohith Chaitanya Varma**, B.E. in Artificial Intelligence and Machine Learning (Class of 2027) at **Rao Bahadur Y Mahabaleswarappa Engineering College (RYMEC)**, Bellary, Karnataka, India.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 💎 Features & Architecture
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Dark Luxury Aesthetic**: Obsidian black backdrops, ambient radial glows (electric violet, deep indigo, neon cyan), and refined glassmorphism.
+- **Editorial Typography**: Pairing *Syne* (display headlines), *Plus Jakarta Sans* (body), and *JetBrains Mono* (technical telemetry & metrics).
+- **Featured Project Showcases**:
+  - **Golden Ratio Face Analyzer**: Computer vision geometric proportion measurement (Phi 1:1.618) and visual landmark analysis with interactive simulator.
+  - **AIVA — AI Virtual Assistant**: Aptitude testing, coding workspace, and mock interview simulator powered by ultra-low-latency Groq API inference.
+  - *Deep Dive Architecture Modal* for both projects with technical flows and live simulations.
+- **Clean Technical Skills**: Categorized transparently (*Languages*, *Frameworks*, *Core CS Fundamentals: DSA & OOP*, *Developer Tools*) without arbitrary proficiency percentages.
+- **Academic Foundation**: Verified degree highlights, institutional credentials, and current **7.14 CGPA**.
+- **Working Resume System**:
+  - Embedded on-screen document layout matching exact profile.
+  - One-click **Download PDF** shortcut fetching `public/resume.pdf`.
+  - Direct **Print / Save to PDF** trigger.
+- **Direct Contact Hub**:
+  - One-click copy email button with instant animated toast (`chaitanya.aiml.rymec@gmail.com`).
+  - Native mail client launcher.
+  - Interactive message form with validation.
+  - Live Indian Standard Time (IST) clock for Bellary, Karnataka.
 
-## Expanding the Oxlint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## 🚀 Running Locally
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Start the development server:
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+3. Build production bundle:
+   ```bash
+   npm run build
+   ```
+
+4. Regenerate or update `public/resume.pdf`:
+   ```bash
+   python generate_resume_pdf.py
+   ```
